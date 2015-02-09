@@ -1,7 +1,6 @@
 " Vim syntax file
 "      Language: Demandware Script
 "    Maintainer: Matjaz Debelak <https://github.com/KillerX>
-" Last Modified: Mon 09 Feb 2013 22:39:46 PM CST
 "       Version: 0.0.1
 "       Changes: Go to https://github.com/KillerX/vim-javascript-syntax for
 "                recent changes.
