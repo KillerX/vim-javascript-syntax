@@ -60,7 +60,6 @@ syntax match   dwScriptCommentSkip      "^[ \t]*\*\($\|[ \t]\+\)"
 syntax region  dwScriptComment          start="/\*"  end="\*/" contains=@Spell,dwScriptCommentTodo,dwScriptCommentParam
 "}}}
 
-syntax match   dwScriptType             ": \?\zs[^ :=]\+\ze \?=" 
 "contained containedin=dwscriptVarGroup
 
 syntax case match
@@ -82,7 +81,7 @@ syntax keyword dwScriptDomNodeConsts PIPELET_ERROR PIPELET_NEXT
 " Code blocks"{{{
 syntax cluster dwScriptAll       contains=dwScriptComment,dwScriptLineComment,dwScriptString,dwScriptRegexpString,dwScriptNumber,dwScriptFloat,dwScriptLabel,dwScriptSource,dwScriptOperator,dwScriptBoolean,dwScriptNull,dwScriptFuncKeyword,dwScriptConditional,dwScriptGlobal,dwScriptRepeat,dwScriptBranch,dwScriptStatement,dwScriptGlobalObjects,dwScriptMessage,dwScriptIdentifier,dwScriptExceptions,dwScriptReserved,dwScriptDeprecated,dwScriptDomNodeConsts,dwScriptHtmlEvents,dwScriptDotNotation,dwScriptPropietaryObjects,dwScriptEventListenerMethods,dwScriptFuncArg
 
-if main_syntax == "javascript"
+if main_syntax == "dwscript"
 	syntax sync clear
 	syntax sync ccomment dwScriptComment minlines=200
 endif
@@ -107,11 +106,14 @@ syntax match dwScriptLogicSymbols "\(&&\)\|\(||\)"
 "}}}
 " JavaScriptFold Function {{{
 
-function! JavaScriptFold()
+function! DWScriptFold()
 	setl foldmethod=syntax
 	setl foldlevelstart=1
 	syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 endfunction
+
+syntax match   dwScriptType             ": \?[^ :=]\+" 
+syntax match   dwScriptColon            ":" contained containedin=dwScriptType
 
 " }}}
 " Highlight links {{{
@@ -170,7 +172,6 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 
 	HiLink dwScriptDomNodeConsts          Constant
 
-	HiLink dwScriptType                   Type
 	
 	HiLink dwScriptFuncKeyword            Function
 	HiLink dwScriptFuncDef                PreProc
@@ -183,6 +184,8 @@ if version >= 508 || !exists("did_javascript_syn_inits")
 	HiLink dwScriptHtmlEvents             Constant
 
 	HiLink dwScriptPropietaryObjects      Constant
+
+	HiLink dwScriptType                   Type
 
 	delcommand HiLink
 endif
