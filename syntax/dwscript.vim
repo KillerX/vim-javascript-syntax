@@ -112,7 +112,7 @@ function! DWScriptFold()
 	syntax region foldBraces start=/{/ end=/}/ transparent fold keepend extend
 endfunction
 
-syntax match   dwScriptType             ": \?[^ :=]\+" 
+syntax match   dwScriptType             ": \?[^ :=?'\";()\[\]]\+" 
 syntax match   dwScriptColon            ":" contained containedin=dwScriptType
 
 " }}}
